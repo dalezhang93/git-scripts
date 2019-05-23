@@ -2,8 +2,12 @@
 
 currentBranch=`git rev-parse --abbrev-ref HEAD`
 
-# save workspace
-git stash save --include-untracked temp-`date +%s`
+# save workspace tree
+worktreeIsClean=true
+if [[ `git diff HEAD --quiet` -eq 1 ]]; then
+  worktreeIsClean=false
+  git stash push --all temp-`date +%s`
+fi
 
 for i in $(git branch | sed 's/^.//')
 do
@@ -13,6 +17,8 @@ done
 
 git checkout ${currentBranch}
 
-# restore workspace
-git stash pop --index
+# restore workspace tree
+if [[ ${worktreeIsClean} == false ]]; then
+  git stash pop --index
+fi
 
