@@ -4,9 +4,10 @@ currentBranch=`git rev-parse --abbrev-ref HEAD`
 
 # save workspace tree
 worktreeIsClean=true
-if [[ `git diff HEAD --quiet` -eq 1 ]]; then
+git diff HEAD --quiet
+if [[ $? -eq 1 ]]; then
   worktreeIsClean=false
-  git stash push --all temp-`date +%s`
+  git stash save --include-untracked temp-`date +%s`
 fi
 
 for i in $(git branch | sed 's/^.//')

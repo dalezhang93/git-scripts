@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-git stash push -all temp-`date +%s`
+git stash save --include-untracked temp-`date +%s`
 
