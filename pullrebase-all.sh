@@ -2,6 +2,11 @@
 
 currentBranch=`git rev-parse --abbrev-ref HEAD`
 
+# check current branch is not head
+if test ${currentBranch} = 'HEAD'; then
+    exit
+fi
+
 # save workspace tree
 worktreeIsClean=true
 git diff HEAD --quiet
