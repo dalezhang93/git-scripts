@@ -8,4 +8,5 @@
 - `cherry-pick-continue.sh` 在`cherry-pick`过程中解决完冲突后，执行`git cherry-pick --continue`
 - `githook-eslit-pre-receive.sh` 通过服务端 `git` 钩子校验 `eslit` 规范
 - `push-special-commit.sh` 推送指定`commit`到远程
+- `apply-last-stash.sh` 应用最后一次的存储，并且使用`--index`不仅恢复工作区的更改，还尝试恢复缓存区的更改
 
